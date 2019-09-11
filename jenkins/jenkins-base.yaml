@@ -4,7 +4,6 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: ci-jenkins
-  namespace: default
   labels:
     "app.kubernetes.io/name": 'jenkins'
     "helm.sh/chart": "jenkins-1.6.0"
@@ -24,7 +23,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: ci-jenkins
-  namespace: default
   labels:
     "app.kubernetes.io/name": 'jenkins'
     "helm.sh/chart": "jenkins-1.6.0"
@@ -173,7 +171,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: ci-jenkins-tests
-  namespace: default
 data:
   run.sh: |-
     @test "Testing Jenkins UI is accessible" {
@@ -186,7 +183,6 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: ci-jenkins
-  namespace: default
   labels:
     "app.kubernetes.io/name": 'jenkins'
     "helm.sh/chart": "jenkins-1.6.0"
@@ -207,7 +203,6 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: ci-jenkins
-  namespace: default
   labels:
     "app.kubernetes.io/name": 'jenkins'
     "helm.sh/chart": "jenkins-1.6.0"
@@ -223,7 +218,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: ci-jenkins-schedule-agents
-  namespace: default
   labels:
     "app.kubernetes.io/name": 'jenkins'
     "helm.sh/chart": "jenkins-1.6.0"
@@ -243,7 +237,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: ci-jenkins-schedule-agents
-  namespace: default
   labels:
     "app.kubernetes.io/name": 'jenkins'
     "helm.sh/chart": "jenkins-1.6.0"
@@ -257,7 +250,6 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: ci-jenkins
-  namespace: default
 
 ---
 
@@ -269,7 +261,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ci-jenkins-agent
-  namespace: default
   labels:
     "app.kubernetes.io/name": 'jenkins'
     "helm.sh/chart": "jenkins-1.6.0"
@@ -293,7 +284,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ci-jenkins
-  namespace: default
   labels:
     "app.kubernetes.io/name": 'jenkins'
     "helm.sh/chart": "jenkins-1.6.0"
@@ -323,7 +313,6 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: "ci-ui-test-nfuzd"
-  namespace: default
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -365,7 +354,6 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: ci-jenkins
-  namespace: default
   labels:
     "app.kubernetes.io/name": 'jenkins'
     "helm.sh/chart": "jenkins-1.6.0"
