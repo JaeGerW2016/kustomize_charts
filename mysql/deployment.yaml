@@ -1,0 +1,17 @@
+---
+# Source: mysql/templates/deployment.yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: release-name-mysql
+spec:
+  template:
+      containers:
+      - name: release-name-mysql
+        image: "mysql:latest"
+        imagePullPolicy: "IfNotPresent"
+        resources:
+          requests:
+            cpu: 500m
+            memory: 256Mi
+          
